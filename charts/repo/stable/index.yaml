@@ -1,0 +1,29 @@
+apiVersion: v1
+entries:
+  devops:
+  - apiVersion: v1
+    created: 2018-06-04T10:32:00.841712+02:00
+    description: DevOps all-in-one bundle
+    digest: 426470eb6226ac532a1820d84c222545c7ec16e8ba194d6de771c4878f47853c
+    home: https://about.gitlab.com
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    keywords:
+    - git
+    - ci
+    - cd
+    - deploy
+    - issue tracker
+    - code review
+    - wiki
+    maintainers:
+    - email: nikh@ch.ibm.com
+      name: Niklaus Hirt
+    name: devops
+    sources:
+    - http://docs.gitlab.com/ce/install/kubernetes/
+    - https://gitlab.com/charts/charts.gitlab.io
+    tillerVersion: '>=2.5.0'
+    urls:
+    - https://raw.githubusercontent.com/niklaushirt/charts/master/charts/repo/stable/devops-0.1.0.tgz
+    version: 0.1.0
+generated: 2018-06-04T10:32:00.839752+02:00
