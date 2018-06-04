@@ -1,5 +1,5 @@
 ## Use:
-https://raw.githubusercontent.com/niklaushirt/charts/master/charts/repo/stable/
+https://raw.githubusercontent.com/niklaushirt/devopshelm/master/charts/repo/stable/
 
 
 for repository URL

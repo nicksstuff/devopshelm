@@ -2,10 +2,10 @@ apiVersion: v1
 entries:
   devops:
   - apiVersion: v1
-    created: 2018-06-04T10:32:00.841712+02:00
+    created: 2018-06-04T10:35:28.820307+02:00
     description: DevOps all-in-one bundle
-    digest: 426470eb6226ac532a1820d84c222545c7ec16e8ba194d6de771c4878f47853c
-    home: https://about.gitlab.com
+    digest: d9e7d7aec2813316d2d22b1ea7b1c906343b3d1cc3a3a382eadedc3d44c77354
+    home: https://raw.githubusercontent.com/niklaushirt/devopshelm/master/charts/repo/stable/
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     keywords:
     - git
@@ -20,10 +20,9 @@ entries:
       name: Niklaus Hirt
     name: devops
     sources:
-    - http://docs.gitlab.com/ce/install/kubernetes/
-    - https://gitlab.com/charts/charts.gitlab.io
+    - https://raw.githubusercontent.com/niklaushirt/devopshelm/master/charts/repo/stable/
     tillerVersion: '>=2.5.0'
     urls:
     - https://raw.githubusercontent.com/niklaushirt/charts/master/charts/repo/stable/devops-0.1.0.tgz
     version: 0.1.0
-generated: 2018-06-04T10:32:00.839752+02:00
+generated: 2018-06-04T10:35:28.818155+02:00

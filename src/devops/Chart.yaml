@@ -11,10 +11,9 @@ keywords:
 - issue tracker
 - code review
 - wiki
-home: https://about.gitlab.com
+home: https://raw.githubusercontent.com/niklaushirt/devopshelm/master/charts/repo/stable/
 sources:
-- http://docs.gitlab.com/ce/install/kubernetes/
-- https://gitlab.com/charts/charts.gitlab.io
+- https://raw.githubusercontent.com/niklaushirt/devopshelm/master/charts/repo/stable/
 icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
 maintainers:
 - name: Niklaus Hirt
