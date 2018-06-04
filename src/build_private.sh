@@ -10,8 +10,9 @@ rm ./index.yaml
 #-----------------------------------------------------------------------------------------------------------------
 #CREATE PACKAGES
 #-----------------------------------------------------------------------------------------------------------------
-helm package devops
-
+#helm package devops
+helm package jenkins
+helm package urbancode
 
 #CREATE INDEX.YAML
 helm repo index --url https://raw.githubusercontent.com/niklaushirt/charts/master/charts/repo/stable/ ./

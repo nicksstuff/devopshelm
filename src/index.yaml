@@ -1,28 +1,39 @@
 apiVersion: v1
 entries:
-  devops:
-  - apiVersion: v1
-    created: 2018-06-04T10:46:45.353863+02:00
-    description: DevOps all-in-one bundle
-    digest: ada4f6d4c7446a1c6a9f90546d0bc3bf04ffc54abfacd5dcb71fabd559166d1b
-    home: https://raw.githubusercontent.com/niklaushirt/devopshelm/master/charts/repo/stable/
-    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
-    keywords:
-    - git
-    - ci
-    - cd
-    - deploy
-    - issue tracker
-    - code review
-    - wiki
+  jenkins:
+  - appVersion: "2.73"
+    created: 2018-06-04T11:33:35.047111+02:00
+    description: Open source continuous integration server. It supports multiple SCM
+      tools including CVS, Subversion and Git. It can execute Apache Ant and Apache
+      Maven-based projects as well as arbitrary scripts.
+    digest: 730a5f3bfc1fd212c63338568016f00b82a19d2c4a5d62f8401191ea8d58103c
+    home: https://jenkins.io/
+    icon: https://wiki.jenkins-ci.org/download/attachments/2916393/logo.png
     maintainers:
-    - email: nikh@ch.ibm.com
-      name: Niklaus Hirt
-    name: devops
+    - email: lachlan.evenson@microsoft.com
+      name: lachie83
+    - email: viglesias@google.com
+      name: viglesiasce
+    name: jenkins
     sources:
-    - https://raw.githubusercontent.com/niklaushirt/devopshelm/master/charts/repo/stable/
-    tillerVersion: '>=2.5.0'
+    - https://github.com/jenkinsci/jenkins
+    - https://github.com/jenkinsci/docker-jnlp-slave
     urls:
-    - https://raw.githubusercontent.com/niklaushirt/charts/master/charts/repo/stable/devops-0.1.0.tgz
-    version: 0.1.0
-generated: 2018-06-04T10:46:45.352572+02:00
+    - https://raw.githubusercontent.com/niklaushirt/charts/master/charts/repo/stable/jenkins-0.14.2.tgz
+    version: 0.14.2
+  urbancode:
+  - apiVersion: v1
+    created: 2018-06-04T11:33:35.0475+02:00
+    description: A Helm chart for IBM UrbanCode Deploy
+    digest: 88db88516050c395ee0e9244a82c1bd98b50f97578f1192c6f9f3c522733ff65
+    icon: https://github.com/niklaushirt/chartslocal/raw/master/icons/urbancodedeployicon.png
+    maintainers:
+    - email: niklaushirt@gmail.com
+      name: Niklaus Hirt
+    name: urbancode
+    sources:
+    - https://github.com/niklaushirt/chartslocal
+    urls:
+    - https://raw.githubusercontent.com/niklaushirt/charts/master/charts/repo/stable/urbancode-6.2.7.tgz
+    version: 6.2.7
+generated: 2018-06-04T11:33:35.045929+02:00
