@@ -1,4 +1,4 @@
-![Node Red logo](https://mp.s81c.com/8034F2C/dal05/v1/AUTH_db1cfc7b-a055-460b-9274-1fd3f11fe689/6973d47ab769037fec3a6345552bb25a/offering_3a8369bb-d7b1-4425-bd13-0a01c88e5745.png)
+![Node Red logo](https://developer.ibm.com/urbancode/wp-content/themes/projectnext-urbancode/images/products/deploy/deploy-infographic.png)
 
 
 #[UrbanCode Deploy](https://developer.ibm.com/urbancode/products/urbancode-deploy/)
