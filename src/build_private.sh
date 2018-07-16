@@ -11,11 +11,10 @@ rm ./index.yaml
 #CREATE PACKAGES
 #-----------------------------------------------------------------------------------------------------------------
 #helm package devops
-helm package jenkins
-helm package urbancode
+helm package devops-pipeline
 
 #CREATE INDEX.YAML
-helm repo index --url https://raw.githubusercontent.com/niklaushirt/charts/master/charts/repo/stable/ ./
+helm repo index --url https://raw.githubusercontent.com/niklaushirt/devopshelm/master/charts/repo/stable/ ./
 
 #-----------------------------------------------------------------------------------------------------------------
 #REMOVE PACKAGES in stable
