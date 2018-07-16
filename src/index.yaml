@@ -1,18 +1,22 @@
 apiVersion: v1
 entries:
-  devops-pipeline:
+  gitlab:
   - apiVersion: v1
-    created: 2018-07-16T07:38:26.3447+02:00
-    description: A Helm chart for setting up a complete DevOps Pipeline
-    digest: a49863531c0d2be1495eaafb93feb4977186258111cf450af84f5e43a45984dc
-    icon: https://github.com/niklaushirt/devopshelm/raw/master/icons/urbancodedeployicon.png
+    appVersion: master
+    created: 2018-07-16T07:51:06.425631+02:00
+    description: Web-based Git-repository manager with wiki and issue-tracking features.
+    digest: eb65a6f6a425e889690448e9cc27ac04a940091b65b237caf227e0f34c8e1816
+    home: https://about.gitlab.com/
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.svg
+    keywords:
+    - gitlab
     maintainers:
-    - email: niklaushirt@gmail.com
-      name: Niklaus Hirt
-    name: devops-pipeline
+    - email: support@gitlab.com
+      name: GitLab Inc.
+    name: gitlab
     sources:
-    - https://github.com/niklaushirt/devopshelm
+    - https://gitlab.com/charts/gitlab
     urls:
-    - https://raw.githubusercontent.com/niklaushirt/devopshelm/master/charts/repo/stable/devops-pipeline-1.0.0.tgz
-    version: 1.0.0
-generated: 2018-07-16T07:38:26.342264+02:00
+    - https://raw.githubusercontent.com/niklaushirt/devopshelm/master/charts/repo/stable/gitlab-0.2.3.tgz
+    version: 0.2.3
+generated: 2018-07-16T07:51:06.418839+02:00
