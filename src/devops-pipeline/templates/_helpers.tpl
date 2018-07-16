@@ -34,7 +34,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 Expand the name of the chart.
 */}}
 {{- define "ucd.name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
+{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" | cat "-ucd" -}}
 {{- end -}}
 
 {{/*
@@ -43,7 +43,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 */}}
 {{- define "ucd.fullname" -}}
 {{- $name := default .Chart.Name .Values.nameOverride -}}
-{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" | cat "-ucd" -}}
 {{- end -}}
 
 {{/* vim: set filetype=mustache: */}}
@@ -51,7 +51,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 Expand the name of the chart.
 */}}
 {{- define "jenkins.name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
+{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" | cat "-jenkins" -}}
 {{- end -}}
 
 {{/*
@@ -61,13 +61,13 @@ If release name contains chart name it will be used as a full name.
 */}}
 {{- define "jenkins.fullname" -}}
 {{- if .Values.fullnameOverride -}}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
+{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" | cat "-jenkins" -}}
 {{- else -}}
 {{- $name := default .Chart.Name .Values.nameOverride -}}
 {{- if contains $name .Release.Name -}}
-{{- .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- .Release.Name | trunc 63 | trimSuffix "-" | cat "-jenkins" -}}
 {{- else -}}
-{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" | cat "-jenkins" -}}
 {{- end -}}
 {{- end -}}
 {{- end -}}
