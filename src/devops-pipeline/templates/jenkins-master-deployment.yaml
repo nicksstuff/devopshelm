@@ -23,7 +23,7 @@ spec:
         chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
         component: "{{ .Release.Name }}-{{ .Values.Master.Component }}"
       annotations:
-        checksum/config: {{ include (print $.Template.BasePath "/config.yaml") . | sha256sum }}
+        checksum/config: {{ include (print $.Template.BasePath "/jenkins-config.yaml") . | sha256sum }}
         {{- if .Values.Master.PodAnnotations }}
 {{ toYaml .Values.Master.PodAnnotations | indent 8 }}
         {{- end }}

@@ -3,31 +3,28 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: ucd-server
-    app: {{ template "ucd.fullname" . }}
+    io.kompose.service: ucd-agent
+    app: {{ template "fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: {{ .Release.Name }}
     heritage: "{{ .Release.Service }}"
-  name: ucd-server
+  name: ucd-agent
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount_Agent }}
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: {{ template "ucd.fullname" . }}
+        io.kompose.service: ucd-agent
+        app: {{ template "fullname" . }}
         chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
         release: {{ .Release.Name }}
         heritage: "{{ .Release.Service }}"
-        io.kompose.service: ucd-server
-    spec:
+    spec: 
       containers:
-      - image: ibmcom/ucds:{{ .Values.tag }}
-        name: ucd-server
-        ports:
-        - containerPort: 8443
-        - containerPort: 7918
+      - image: ibmcom/ucda:{{ .Values.tag }}
+        name: ucd-agent
         resources: {}
       restartPolicy: Always
 status: {}
