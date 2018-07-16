@@ -1,19 +1,3 @@
-# Default values for mychart.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.repository_ucds: ibmcom/ucds
-
-# Version  for UrbanCode Deploy Server
-tag: 6.2.7.1.960481
-
-#Number of replicas for UrbanCode Deploy Server
-replicaCount_Agent: 1
-
-
-#Service Type for UrbanCode Deploy Server
-serviceType: "NodePort"
-
-
-
 # Default values for jenkins.
 # This is a YAML-formatted file.
 # Declare name/value pairs to be passed into your templates.
@@ -27,20 +11,15 @@ serviceType: "NodePort"
 Master:
   Name: jenkins-master
   Image: "jenkins/jenkins"
-  ImageTag: "lts"
+  ImageTag: "2.111"
   ImagePullPolicy: "IfNotPresent"
 # ImagePullSecret: jenkins
   Component: "jenkins-master"
   UseSecurity: true
   AdminUser: admin
-  # AdminPassword: <defaults to random>
-  resources:
-    requests:
-      cpu: "50m"
-      memory: "256Mi"
-    limits:
-      cpu: "2000m"
-      memory: "2048Mi"
+  AdminPassword: admin
+  Cpu: "200m"
+  Memory: "256Mi"
   # Environment variables that get added to the init container (useful for e.g. http_proxy)
   # InitContainerEnv:
   #   - name: http_proxy
@@ -52,8 +31,6 @@ Master:
   # JavaOpts: "-Xms512m -Xmx512m"
   # JenkinsOpts: ""
   # JenkinsUriPrefix: "/jenkins"
-  # Enable pod security context (must be `true` if RunAsUser or FsGroup are set)
-  UsePodSecurityContext: true
   # Set RunAsUser to 1000 to let Jenkins run as non-root user 'jenkins' which exists in 'jenkins/jenkins' docker image.
   # When setting RunAsUser to a different value than 0 also set FsGroup to the same value:
   # RunAsUser: <defaults to 0>
@@ -61,7 +38,7 @@ Master:
   ServicePort: 8080
   # For minikube, set this to NodePort, elsewhere use LoadBalancer
   # Use ClusterIP if your setup includes ingress controller
-  ServiceType: LoadBalancer
+  ServiceType: NodePort
   # Master Service annotations
   ServiceAnnotations: {}
   #   service.beta.kubernetes.io/aws-load-balancer-backend-protocol: https
@@ -70,20 +47,9 @@ Master:
   # NodePort: <to set explicitly, choose port between 30000-32767
   ContainerPort: 8080
   # Enable Kubernetes Liveness and Readiness Probes
-  # ~ 2 minutes to allow Jenkins to restart when upgrading plugins. Set ReadinessTimeout to be shorter than LivenessTimeout.
   HealthProbes: true
-  HealthProbesLivenessTimeout: 90
-  HealthProbesReadinessTimeout: 60
-  HealthProbeLivenessFailureThreshold: 12
+  HealthProbesTimeout: 60
   SlaveListenerPort: 50000
-  DisabledAgentProtocols:
-    - JNLP-connect
-    - JNLP2-connect
-  CSRF:
-    DefaultCrumbIssuer:
-      Enabled: true
-      ProxyCompatability: true
-  CLI: false
   # Kubernetes service type for the JNLP slave service
   # SETTING THIS TO "LoadBalancer" IS A HUGE SECURITY RISK: https://github.com/kubernetes/charts/issues/1341
   SlaveListenerServiceType: ClusterIP
@@ -130,10 +96,8 @@ Master:
   # ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#taints-and-tolerations-beta-feature
   NodeSelector: {}
   Tolerations: {}
-  PodAnnotations: {}
 
   Ingress:
-    ApiVersion: extensions/v1beta1
     Annotations:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
@@ -150,13 +114,8 @@ Agent:
 # ImagePullSecret: jenkins
   Component: "jenkins-slave"
   Privileged: false
-  resources:
-    requests:
-      cpu: "200m"
-      memory: "256Mi"
-    limits:
-      cpu: "200m"
-      memory: "256Mi"
+  Cpu: "200m"
+  Memory: "256Mi"
   # You may want to change this to true while testing a new image
   AlwaysPullImage: false
   # You can define the volumes that you want to mount for this container
@@ -172,7 +131,7 @@ Agent:
   # jenkins-agent: v1
 
 Persistence:
-  Enabled: true
+  Enabled: false
   ## A manually managed Persistent Volume and Claim
   ## Requires Persistence.Enabled: true
   ## If defined, PVC must be created manually before volume will be bound
@@ -213,116 +172,3 @@ rbac:
   apiVersion: v1beta1
   # Cluster role reference
   roleRef: cluster-admin
-
-
-
-
-## GitLab CE image
-image: gitlab/gitlab-ce:9.4.1-ce.0
-
-## Specify a imagePullPolicy
-imagePullPolicy: IfNotPresent
-
-## The URL (with protocol) that your users will use to reach the install.
-## ref: https://docs.gitlab.com/omnibus/settings/configuration.html#configuring-the-external-url-for-gitlab
-##
-#externalUrl: http://your-domain.com/
-
-## Default admin password
-gitlabRootPassword: "admin"
-
-## For minikube, set this to NodePort, elsewhere use LoadBalancer
-serviceType: LoadBalancer
-
-## Ingress configuration options
-##
-ingress:
-  annotations:
-      # kubernetes.io/ingress.class: nginx
-      # kubernetes.io/tls-acme: "true"
-  enabled: false
-  tls:
-      # - secretName: gitlab.cluster.local
-      #   hosts:
-      #     - gitlab.cluster.local
-  url: gitlab.cluster.local
-
-## Configure external service ports
-## ref: http://kubernetes.io/docs/user-guide/services/
-sshPort: 22
-httpPort: 80
-httpsPort: 443
-## livenessPort Port of liveness probe endpoint
-livenessPort: http
-## readinessPort Port of readiness probe endpoint
-readinessPort: http
-
-## Configure resource requests and limits
-## ref: http://kubernetes.io/docs/user-guide/compute-resources/
-##
-resources:
-  ## GitLab requires a good deal of resources. We have split out Postgres and
-  ## redis, which helps some. Refer to the guidelines for larger installs.
-  ## ref: https://docs.gitlab.com/ce/install/requirements.html#hardware-requirements
-  requests:
-    memory: 1Gi
-    cpu: 500m
-  limits:
-    memory: 2Gi
-    cpu: 1
-
-## Enable persistence using Persistent Volume Claims
-## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
-## ref: https://docs.gitlab.com/ce/install/requirements.html#storage
-##
-persistence:
-  ## This volume persists generated configuration files, keys, and certs.
-  ##
-  gitlabEtc:
-    enabled: true
-    size: 1Gi
-    ## If defined, volume.beta.kubernetes.io/storage-class: <storageClass>
-    ## Default: volume.alpha.kubernetes.io/storage-class: default
-    ##
-    # storageClass:
-    accessMode: ReadWriteOnce
-  ## This volume is used to store git data and other project files.
-  ## ref: https://docs.gitlab.com/omnibus/settings/configuration.html#storing-git-data-in-an-alternative-directory
-  ##
-  gitlabData:
-    enabled: true
-    size: 10Gi
-    ## If defined, volume.beta.kubernetes.io/storage-class: <storageClass>
-    ## Default: volume.alpha.kubernetes.io/storage-class: default
-    ##
-    # storageClass:
-    accessMode: ReadWriteOnce
-
-## Configuration values for the postgresql dependency.
-## ref: https://github.com/kubernetes/charts/blob/master/stable/postgresql/README.md
-##
-postgresql:
-  # 9.6 is the newest supported version for the GitLab container
-  imageTag: "9.6"
-  cpu: 1000m
-  memory: 1Gi
-
-  postgresUser: gitlab
-  postgresPassword: gitlab
-  postgresDatabase: gitlab
-
-  persistence:
-    size: 10Gi
-
-## Configuration values for the redis dependency.
-## ref: https://github.com/kubernetes/charts/blob/master/stable/redis/README.md
-##
-redis:
-  redisPassword: "gitlab"
-
-  resources:
-    requests:
-      memory: 1Gi
-
-  persistence:
-    size: 10Gi
